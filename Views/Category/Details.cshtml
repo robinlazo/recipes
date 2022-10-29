@@ -1,0 +1,10 @@
+@model Category
+@{
+    ViewData["Title"] = $"Category - {Model.Name}";
+}
+
+<div class="background-details-category">
+    <h3 class="category-details-name">@Model.Name</h3>
+    <p class="category-details-description">@Model.Description</p>
+</div>
+<partial name="_RecipeListPartialView" model="@Model.Recipes" />

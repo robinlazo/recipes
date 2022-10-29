@@ -1,0 +1,21 @@
+@model IEnumerable<Recipe>
+
+<div class="col-sm-12 bg-light">
+    <ul class="list-inline">
+        @foreach(var recipe in Model) {
+            <li class="list-inline-item mt-4 mb-4 ms-5">
+                <div class="card" >
+                    <img src="~/images/@(recipe.FoodImage).webp" class="card-img-top card-img-dimensions" alt="@recipe.Name" />
+                    <div class="card-body card-body-dimensions">
+                        <a asp-controller="Recipe" asp-action="Details" asp-route-id="@recipe.RecipeID" asp-route-slug="@recipe.Name.Slug()"
+                        class="card-title card-title-decoration">@recipe.Name</a>
+                        <p class="card-text">@recipe.Description.TrimDescription()</p>
+                    </div>
+                    <form asp-action="Add" asp-controller="Favorite" method="post">
+                        <button type="submit" name="id" value="@recipe.RecipeID">Add To Favorites</button>      
+                    </form>
+                </div>
+            </li>
+        }    
+    </ul>
+</div>

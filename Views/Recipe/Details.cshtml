@@ -1,0 +1,36 @@
+@model DetailsViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="details-container">
+    <h2 class="details-category">Category - @Model.Recipe.Category.Name</h2>
+    <div class="details-card">
+        <img src="~/images/@(Model.Recipe.FoodImage).webp" class="card-img-details"  alt="@Model.Recipe.Name" />
+        <div class="details-card-body">
+            <h5>@Model.Recipe.Name</h5>
+            <p>@Model.Recipe.Description</p>
+            <div class="details-card-group">
+                <div class="details-card-item">
+                    <i class="fas fa-clock"></i>
+                    <span>@Model.ToHours(Model.Recipe.PreparationTime)</span>
+                </div>
+                <div class="details-card-item">
+                    <i class="fas fa-star"></i>
+                    <span>@Model.Recipe.Rating</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="steps-container">
+    <h3 class="step-title">Steps</h3>
+    <ol class="list-steps">
+    @for(int i = 0; i < Model.ListSteps.Length; i++) {
+        <div class="step-details">
+            <span class="step-number">@(i+1)</span>
+            <li>@Model.ListSteps[i]</li>
+        </div>
+    }
+    </ol>
+</div>

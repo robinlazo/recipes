@@ -1,0 +1,57 @@
+@model AddViewModel
+@{
+    ViewData["Title"] = ViewBag.Action;
+}
+@section scripts {
+    <script src="~/js/editaddview.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+}
+
+<h1 class="ms-5 mt-3">@ViewBag.Action Product</h1>
+
+<form asp-action="Add" method="post" >
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group mb-4 ms-5 me-5 mt-3">
+        <label for="NameField" class="form-label">Name: </label>
+        <input asp-for="Name" class="form-control" id="NameField"/>
+    </div>
+    <div class="form-group mb-4 ms-5 me-5">
+        <label for="CategoryField" class="form-label">Category: </label>
+        <select asp-for="CategoryID" class="form-control" asp-items="@(new SelectList(ViewBag.Categories, "CategoryID", "Name"))">
+            <option value="" disabled selected>Select a Category</option>
+        </select>
+    </div>
+    <div class="form-group mb-4 ms-5 me-5">
+        <label for="DescriptionField" class="form-label">Description: </label>
+        <input asp-for="Description" class="form-control" id="DescriptionField"/>
+    </div>
+    <div class="form-group mb-4 ms-5 me-5">
+        <label for="ImageField" class="form-label">Image Name: </label>
+        <input asp-for="FoodImage" class="form-control" id="ImageField"/>
+    </div>
+    <div class="form-group mb-4 ms-5 me-5">
+        <label for="TimeField" class="form-label">Time For Preparation: </label>
+        <input asp-for="PreparationTime" class="form-control" id="TimeField"
+         placeholder="The time must be less than 600 mins"   />
+    </div>
+    <div class="form-group mb-4 ms-5 me-5">
+        <label for="RatingField" class="form-label">Rating: </label>
+        <input asp-for="Rating" class="form-control" id="RatingField"
+        placeholder="1-5 stars" />
+    </div>
+    <div class="step-list-container ms-5">
+        <label class="form-label">Steps (fill out every input): </label>
+        <div class="steps-control">
+            <i class="fas fa-plus max-icon"></i>
+            <span id="steps-number">0</span>
+            <i class="fas fa-minus min-icon"></i>
+        </div>
+        <ol class="me-5 mt-3 step-list">
+        </ol>
+    </div>
+
+    <a class="btn btn-primary ms-5" asp-action="Index">Cancel</a>
+    <button class="btn btn-primary ms-2" type="submit">Submit</button>
+</form>

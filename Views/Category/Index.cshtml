@@ -1,0 +1,18 @@
+@model List<Category>
+@{
+    ViewData["Title"] = "Category";
+}
+
+<div id="category-container">
+    <div class="category-header">
+        <h3 class="category-title">CATEGORIES</h3>
+    </div>
+    <div class="category-list mt-4">
+        @foreach(var category in Model) {
+            <div class="category-item mb-4">
+                <img src="~/images/Category/@(category.Name).jpg" class="category-img" />
+                <a asp-route-id="@category.CategoryID" asp-action="Details" class="category-details-link">@category.Name</a>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@model List<Recipe>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<header class="text-center text-white mb-4">
+    <div class="bg-danger p-2">
+        <a class="text-white" asp-action="Index" asp-controller="Favorite">My Favorite Recipes</a>
+        <vc:fav-log></vc:fav-log>
+    </div>
+    <div class="add-container">
+        <p class="recipe-header">Delicious Recipes</p>
+        <a asp-action="Add" class="add-link"><i class="fas fa-plus"></i></a>
+    </div>
+</header>
+<partial name="_RecipeListPartialView" />
